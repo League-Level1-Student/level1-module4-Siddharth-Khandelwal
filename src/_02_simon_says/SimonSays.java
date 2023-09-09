@@ -48,7 +48,7 @@ showImage();
 
 	public void keyPressed(KeyEvent e) {
 		// 15. Make a points variable to track the score.
-
+int points;
 		// 16. If the keyCode matches the imageIndex and "Simon says"
 
 		// 17. Increase the value of score
@@ -91,12 +91,22 @@ frame.pack();
 		// JFrame.EXIT_ON_CLOSE
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// 11. Add a key listener to the frame
-
+frame.addKeyListener(this);
 		// 12. Create a new instance of Random
+Random rand = new Random();
+int tosay = rand.nextInt(2);
+
 
 		// 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
-
+if(tosay == 0){
+	speak("Simon says press this key");
+	simonSays = true;
+}
+else {
+	speak("press this key");
+	simonSays = false;
+}
 		// 14. Above, set the value of simonSays to true/false appropriately
 
 	}
