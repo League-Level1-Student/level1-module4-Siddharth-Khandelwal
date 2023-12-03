@@ -11,10 +11,10 @@ import javax.swing.JTextField;
 public class Pig_Latin implements ActionListener {
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
-	JTextField eng = new JTextField(50);
+	JTextField eng = new JTextField(30);
 	JButton right = new JButton(">>");
 	JButton left = new JButton("<<");
-	JTextField pigl = new JTextField(50);
+	JTextField pigl = new JTextField(30);
 	JButton speak = new JButton("Speak");
 	public void run() {
 		frame.add(panel);
