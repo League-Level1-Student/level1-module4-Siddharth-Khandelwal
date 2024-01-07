@@ -13,7 +13,13 @@ JLabel dos = new JLabel();
 JLabel tres = new JLabel();
 JButton spin = new JButton("SPIN");
 	public void run() {
-		
+		frame.add(panel);
+		panel.add(uno);
+		panel.add(dos);
+		panel.add(tres);
+		panel.add(spin);
+		frame.pack();
+		frame.setVisible(true);
 		
 	}
 
