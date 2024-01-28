@@ -2,15 +2,20 @@ package _12_slot_machine;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class SlotMachine implements ActionListener {
@@ -20,8 +25,12 @@ public class SlotMachine implements ActionListener {
 	JLabel dos = new JLabel();
 	JLabel tres = new JLabel();
 	JButton spin = new JButton("SPIN");
-
+int i = 0;
+private Clip jeopardyThemeClip;
 	public void run() {
+		panel.add(uno);
+		panel.add(dos);
+		panel.add(tres);
 		frame.add(panel);
 		panel.add(spin);
 		frame.pack();
@@ -49,15 +58,19 @@ public class SlotMachine implements ActionListener {
 			assigning();
 		}
 	}
+	
 
 	public void assigning() {
+		panel.remove(uno);
+		panel.remove(dos);
+		panel.remove(tres);
 		Random rand = new Random();
 		int onee = rand.nextInt(3);
 		int twoo = rand.nextInt(3);
 		int threee = rand.nextInt(3);
 		String grap = "grapes.jpg";
 		String orang = "orange.jpg";
-		String cherr = "cherry.jpg";
+		String cherr = "cherry1.jpg";
 		try {
 			if (onee == 0) {
 				uno = createLabelImage(grap);
@@ -89,5 +102,23 @@ public class SlotMachine implements ActionListener {
 		panel.add(dos);
 		panel.add(tres);
 		frame.pack();
+		if(onee == twoo && twoo == threee) {
+			JOptionPane.showMessageDialog(null, "YOU WIN");
+			i++;
+			JOptionPane.showMessageDialog(null, "Wins: "+i+"");
+			playJeopardyTheme();
+		}
+	}
+	public void playJeopardyTheme() {
+		String fileName = "src/_12_slot_machine/boom.wav";
+		// Note: use .wav files
+		try {
+			jeopardyThemeClip = AudioSystem.getClip();
+			AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fileName));
+			jeopardyThemeClip.open(inputStream);
+			jeopardyThemeClip.start();
+		} catch (Exception e) {
+			System.out.println("play sound error: " + e.getMessage() + " for " + fileName);
+		}
 	}
 }
