@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Iterator;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,6 +24,7 @@ import javax.swing.JPanel;
 public class LightsOut implements MouseListener {
 
 	JPanel gamePanel = new JPanel();
+JFrame frame = new JFrame();
 
 	public LightsOut() {
 
@@ -32,10 +35,17 @@ public class LightsOut implements MouseListener {
 			//2. Add 25 JLabels to your gamePanel (these are your lights)
 for (int i = 0; i < 24; i++) {
 	JLabel label = new JLabel();
+	gamePanel.add(label);
+	String numero = i+"";
+	label.setText(numero);
+	label.setBackground(Color.LIGHT_GRAY);
+	label.setOpaque(true);
+	label.addMouseListener(this);
 }
 			//3. Use setText() to add a position number to each light (0-24).
 
 			//4. Set the background of each light to LIGHT_GRAY
+
 			// - you will also have to set the background to opaque.
 			// - Use light.setOpaque(true);
 
@@ -43,20 +53,21 @@ for (int i = 0; i < 24; i++) {
 		
 		
 		//6. Add your panel to a frame
-
+frame.add(gamePanel);
 		//7. Set the size of the frame
-
+frame.setSize(500,500);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		/** PART 2: TOGGLE NEIGHBORING LIGHTS **/
 		// 1. Get the light that was clicked on `(JLabel) e.getSource`
-
+JLabel clicked = (JLabel) e.getSource();
 		// 2. Get the number (position) of the light
-
+String textof = clicked.getText();
 		// 3. Now use the makeMove method to code which lights turn on and off.
-
+int bob = Integer.parseInt(textof);
+makeMove(bob);
 		// 4.Check if the player has won (e.g. all the lights are off)
 		// ---- HINT: use `getLightAtPosition` to get the light at each position
 		// ---------- use 'getBackground' to get the light color
