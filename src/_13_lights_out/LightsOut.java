@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Iterator;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,7 +26,8 @@ public class LightsOut implements MouseListener {
 
 	JPanel gamePanel = new JPanel();
 JFrame frame = new JFrame();
-
+String textof = "s";
+int bob = 0;
 	public LightsOut() {
 
 		/** PART 1. CREATE YOUR LIGHT BOARD **/
@@ -33,7 +35,7 @@ JFrame frame = new JFrame();
 		gamePanel.setLayout(new GridLayout());
 		
 			//2. Add 25 JLabels to your gamePanel (these are your lights)
-for (int i = 0; i < 24; i++) {
+for (int i = 0; i < 25; i++) {
 	JLabel label = new JLabel();
 	gamePanel.add(label);
 	String numero = i+"";
@@ -56,6 +58,7 @@ for (int i = 0; i < 24; i++) {
 frame.add(gamePanel);
 		//7. Set the size of the frame
 frame.setSize(500,500);
+	frame.setVisible(true);
 	}
 
 	@Override
@@ -64,17 +67,22 @@ frame.setSize(500,500);
 		// 1. Get the light that was clicked on `(JLabel) e.getSource`
 JLabel clicked = (JLabel) e.getSource();
 		// 2. Get the number (position) of the light
-String textof = clicked.getText();
+textof = clicked.getText();
 		// 3. Now use the makeMove method to code which lights turn on and off.
-int bob = Integer.parseInt(textof);
+ bob = Integer.parseInt(textof);
 makeMove(bob);
 		// 4.Check if the player has won (e.g. all the lights are off)
 		// ---- HINT: use `getLightAtPosition` to get the light at each position
 		// ---------- use 'getBackground' to get the light color
-
-		/** PART 3: RANDOMIZE YOUR BOARD **/
+getLightAtPosition(bob);
+clicked.getBackground();
+/** PART 3: RANDOMIZE YOUR BOARD **/
 		// Now that your game works can you make the game start with some lights on?
-
+Random rand = new Random();
+int jeff = rand.nextInt(25);
+if (jeff == bob) {
+	
+}
 	}
 
 	void makeMove(int pos) {
