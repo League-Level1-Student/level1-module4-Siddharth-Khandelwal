@@ -43,6 +43,11 @@ for (int i = 0; i < 25; i++) {
 	label.setBackground(Color.LIGHT_GRAY);
 	label.setOpaque(true);
 	label.addMouseListener(this);
+	Random rand = new Random();
+	int jeff = rand.nextInt(25);
+	if (jeff == bob) {
+		toggle(label);
+	}
 }
 			//3. Use setText() to add a position number to each light (0-24).
 
@@ -78,12 +83,9 @@ getLightAtPosition(bob);
 clicked.getBackground();
 /** PART 3: RANDOMIZE YOUR BOARD **/
 		// Now that your game works can you make the game start with some lights on?
-Random rand = new Random();
-int jeff = rand.nextInt(25);
-if (jeff == bob) {
-	
+
 }
-	}
+	
 
 	void makeMove(int pos) {
 		toggle((JLabel) gamePanel.getComponent(pos));
